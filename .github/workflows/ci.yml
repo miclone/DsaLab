@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:        # adds a "Run workflow" button on the Actions tab
+
+permissions:
+  contents: read            # the workflow only needs to read the code
+
+concurrency:                # a new push cancels the still-running check of the old one
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  test:
+    name: Test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false      # if one OS fails, still finish the others
+      matrix:
+        # x64 Linux, x64 Windows and ARM64 macOS: three operating systems and two
+        # CPU architectures, all free for public repositories.
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v7
+
+      - name: Set up .NET 10
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore packages
+        run: dotnet restore
+
+      # Release so the timing tests (organ pipe, one million items) run at full speed.
+      # This also proves the benchmark project compiles, without running benchmarks:
+      # shared CI machines are far too noisy for meaningful timings.
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Run tests
+        run: dotnet test --no-build --configuration Release --verbosity normal

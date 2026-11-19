@@ -1,5 +1,7 @@
 # DsaLab: data structures and algorithms in C# / .NET 10
 
+[![CI](https://github.com/miclone/DsaLab/actions/workflows/ci.yml/badge.svg)](https://github.com/miclone/DsaLab/actions/workflows/ci.yml)
+
 ```
 DsaLab.slnx                  solution (new .slnx format)
 Directory.Build.props        net10.0, nullable, implicit usings for all projects
