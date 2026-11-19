@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <Optimize>true</Optimize>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.15.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Dsa" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Dsa\Dsa.csproj" />
+  </ItemGroup>
+</Project>
