@@ -17,8 +17,12 @@ Single-file programs that run without a project (.NET 10 file-based apps):
 
 ```powershell
 cd samples
-dotnet run DsaReference.cs              # every data structure and algorithm, with a printed demo of each
-dotnet run ConcurrentCollectionsDemo.cs # ConcurrentDictionary/Queue/Stack/Bag, BlockingCollection, Channel<T>
+
+# every data structure and algorithm, with a printed demo of each
+dotnet run DsaReference.cs
+
+# ConcurrentDictionary/Queue/Stack/Bag, BlockingCollection, Channel<T>
+dotnet run ConcurrentCollectionsDemo.cs
 ```
 
 The concurrency demo checks its own results and also shows the common mistakes:
