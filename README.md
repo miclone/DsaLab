@@ -8,7 +8,22 @@ Directory.Build.props        net10.0, nullable, implicit usings for all projects
 src/Dsa/                     the library: everything from DsaReference.cs, now public
 tests/Dsa.Tests/             xUnit tests (one or more per algorithm)
 benchmarks/Dsa.Benchmarks/   BenchmarkDotNet: sorts, collections, graph algorithms
+samples/                     runnable single-file demos (dotnet run <file>.cs)
 ```
+
+## Samples
+
+Single-file programs that run without a project (.NET 10 file-based apps):
+
+```powershell
+cd samples
+dotnet run DsaReference.cs              # every data structure and algorithm, with a printed demo of each
+dotnet run ConcurrentCollectionsDemo.cs # ConcurrentDictionary/Queue/Stack/Bag, BlockingCollection, Channel<T>
+```
+
+The concurrency demo checks its own results and also shows the common mistakes:
+`List<T>` silently losing items under parallel writes (71% lost on a 12-thread CPU),
+and `dict[key]++` losing updates even on a `ConcurrentDictionary` (82% lost).
 
 ## Run the tests
 
