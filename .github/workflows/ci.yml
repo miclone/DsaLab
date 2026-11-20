@@ -3,9 +3,15 @@ name: CI
 on:
   push:
     branches: [master]
+    paths-ignore:
+      - '**.md'          # README and other documentation
+      - 'samples/**'     # not part of the build
   pull_request:
     branches: [master]
-  workflow_dispatch:        # adds a "Run workflow" button on the Actions tab
+    paths-ignore:
+      - '**.md'
+      - 'samples/**'
+  workflow_dispatch:     # adds a "Run workflow" button on the Actions tab
 
 permissions:
   contents: read            # the workflow only needs to read the code
