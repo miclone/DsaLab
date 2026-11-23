@@ -19,13 +19,14 @@
 //  Numbers marked "varies" depend on thread timing and differ run to run.
 // ============================================================================
 
+
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Channels;
+using System.Threading;
 using System.Threading.Tasks;
 
 Console.WriteLine($"Concurrent collections demo: {Environment.ProcessorCount} logical CPUs\n");
